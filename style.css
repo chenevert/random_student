@@ -1,0 +1,44 @@
+body {
+	margin: auto;
+	width: 800px;
+}
+
+h1 {
+	text-align: center;
+	font-family: "Courier", monospace;
+	padding: 40px;
+}
+
+select {
+	font-family: "Courier", monospace;
+	font-size: 20px;
+}
+
+#roulette {
+	border-radius: 5px;
+	margin: auto;
+	text-align: center;
+	width: 324px;
+	height: 480px;
+}
+
+#dés {
+	margin-top: 110px;
+}
+
+#photo {
+	width: 324px;
+	height: 416px;
+}
+
+#name {
+	padding: 40px;
+	font-size: 20px;
+}
+	
+
+#controls {
+	margin: auto;
+	text-align: center;
+	padding: 50px;
+}
