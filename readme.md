@@ -1,3 +1,7 @@
+# Instructions
+
+
+
 1) Récupérer un Notation des apprenants.csv d'import de notes dans une épreuve Aurion
 
 2) Le renommer en nom_de_promo.csv qui sera utilisé pour l'affichage
@@ -10,11 +14,11 @@ ex. w/ http://www.csvjson.com/csv2json
 
 nommé student_list.json dans le répertoire correspondant
 
-dir/student_list.json
+data/dir/student_list.json
 
 les fichiers sont
 
-dir/[id].jpg
+data/dir/[id].jpg
 
 On y fait référence par "dir"
 

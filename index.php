@@ -6,8 +6,8 @@
 	<link rel="stylesheet" href="style.css">
 	<script src="roulette.js"></script>
 </head>
-<body>
-	<h1>random_student(<select><?php
+<body onload="init()">
+	<h1>random_student(<select id="promo" onchange="init()"><?php
 	
 			foreach (array_diff(scandir("data", 1), [".", ".."]) as $name)
 				echo "<option>". $name . "</option>";

@@ -2,8 +2,8 @@ var Roulette = (function() {
 	
 	/** 
 	 * Constructeur
-	 * @param selector : selecteur css de l'élément dans lequel afficher les photos
-	 * @config : voir la méthode config
+	 * @param selector : selecteur css de l'Ã©lÃ©ment dans lequel afficher les photos
+	 * @config : voir la mÃ©thode config
 	 */
 	var Module = function(selector, config) {
 		this._element = document.querySelector(selector);
@@ -14,8 +14,8 @@ var Roulette = (function() {
 	 * Configure le module
 	 * @param config :
 	 * 		- urls : tableau contenant les urls des images
-	 *		- transition : durée d'affichage d'une image en ms (200ms par défaut)
-	 * 		- duration : durée de l'animation en ms (2s par défaut)
+	 *		- transition : durÃ©e d'affichage d'une image en ms (200ms par dÃ©faut)
+	 * 		- duration : durÃ©e de l'animation en ms (2s par dÃ©faut)
 	 */
 	Module.prototype.config = function(config) {
 		//this._urls = Array.isArray(config.urls) ? config.urls : [];
@@ -23,8 +23,8 @@ var Roulette = (function() {
 		this._transitionDuration = config.transition || 200;
 		this._duration = config.duration || 2000;
 		
-		this._dir = config.dir;
-		// Brutal (aucune vérification + synchrone => utiliser jQuery) 
+		this._dir = "data/" + config.dir;
+		// Brutal (aucune vÃ©rification + synchrone => utiliser jQuery) 
 		var xhr = new XMLHttpRequest();
 		xhr.open("GET", this._dir + "/student_list.json", false);
 		xhr.send();
@@ -33,7 +33,7 @@ var Roulette = (function() {
 	};
 	
 	/**
-	 * Débute l'animation
+	 * DÃ©bute l'animation
 	 */
 	Module.prototype.start = function() {
 		var counter = window.parseInt(this._duration / this._transitionDuration);
@@ -44,8 +44,8 @@ var Roulette = (function() {
 	};
 	
 	/**
-	 * Choisi une image aléatoire 
-	 * différente de la précédente s'il existe 3 images ou plus
+	 * Choisi une image alÃ©atoire 
+	 * diffÃ©rente de la prÃ©cÃ©dente s'il existe 3 images ou plus
 	 * et l'affiche
 	 */
 	Module.prototype.changeImage = function() {
@@ -59,24 +59,29 @@ var Roulette = (function() {
 		var chosenStudent = this._students[this._currentId];
 		
 		var img = document.createElement('img');
-		//img.setAttribute('src', this._students[this._currentImageId]);
 		img.setAttribute('id', 'photo');
 		
 		var id = chosenStudent.lastName + "_" + chosenStudent.firstName;
 		
-		id = id.replace(" /g", "_")
-		id = id.replace("é/g", "e")
-		id = id.replace("è/g", "e")
-		id = id.replace("ï/g", "i")
-		id = id.replace("ô/g", "o")
+		// rendre plus propre / robuste
+		
+		id = id.replace(/ /g, "_")
+		id = id.replace(/Ã©/g, "e")
+		id = id.replace(/Ã¨/g, "e")
+		id = id.replace(/Ã¯/g, "i")
+		id = id.replace(/Ã´/g, "o")
+		
+		console.log(id)
 		
 		img.setAttribute('src', this._dir+'/'+id +'.jpg');
 		//console.log(this._students[this._currentId]);
 		this._element.appendChild(img);
 		
+		var fullName = chosenStudent.firstName + " " + chosenStudent.lastName;
+		
 		var name = document.createElement('div');
 		name.setAttribute('id', 'name');
-		name.innerHTML = chosenStudent.firstName + " " + chosenStudent.lastName;
+		name.innerHTML = fullName;
 		this._element.appendChild(name);
 	};
 	
